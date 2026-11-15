@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Water Meter</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="theme-light">
+  <div class="popup-shell">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand-group">
+        <span class="brand-dot"></span>
+        <h1 class="brand-title">AI Water Meter</h1>
+      </div>
+      <button id="info-toggle-btn" class="icon-btn" type="button" aria-label="About rough estimates" title="About these estimates">i</button>
+    </header>
+
+    <!-- Honesty Note -->
+    <section id="info-panel" class="info-panel" hidden>
+      Approximate estimates for fun and awareness, not direct scientific measurements. Conversation text is never stored or transmitted.
+    </section>
+
+    <!-- Primary Card: How much water have my AI chats used today? -->
+    <section class="hero-card" aria-label="Today's estimated water usage">
+      <div id="popup-bottle-mount" class="bottle-slot"></div>
+      <div class="hero-copy">
+        <div class="eyebrow">TODAY'S ESTIMATE</div>
+        <div id="today-friendly" class="big-human-number">0 drops today</div>
+        <div id="today-exact" class="exact-gray">0 ml · rough estimate</div>
+        <div class="mini-bottle-row">
+          <span id="mini-bottle-slot" class="mini-bottle-icon"></span>
+          <span id="today-bottles-label" class="mini-bottle-text">0 bottles (1 L) today</span>
+        </div>
+        <p id="today-fun-line" class="fun-line">
+          A quiet server rack waiting for your first message.
+        </p>
+      </div>
+    </section>
+
+    <!-- Compact Achievement Preview -->
+    <section class="achievements-card" aria-label="Achievements">
+      <div class="section-title-row">
+        <span class="section-title">ACHIEVEMENTS</span>
+        <span id="ach-count" class="ach-pill">0 / 6</span>
+      </div>
+      <div id="achievements-grid" class="achievements-grid"></div>
+    </section>
+
+    <!-- Primary Utility Actions -->
+    <section class="actions-row">
+      <button id="toggle-settings-btn" class="action-btn secondary" type="button">Settings</button>
+      <button id="popup-share-btn" class="action-btn primary" type="button">Share Card (PNG)</button>
+    </section>
+
+    <!-- Collapsible Settings Panel -->
+    <section id="settings-drawer" class="drawer-card" hidden>
+      <div class="section-title">SETTINGS</div>
+      <div class="settings-grid">
+        <label class="field full">
+          <span>Scenario</span>
+          <select id="setting-scenario">
+            <option value="official">Official numbers — Based on reported company figures</option>
+            <option value="realistic">Realistic — Cooling and electricity-generation water</option>
+            <option value="scary">Scary numbers — Higher-impact illustrative scenario</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Cooling System</span>
+          <select id="setting-cooling-type">
+            <option value="evaporative">Evaporative</option>
+            <option value="closed_loop">Closed-loop liquid</option>
+            <option value="mixed">Mixed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Bottle View</span>
+          <select id="setting-bottle-view">
+            <option value="zoom10">10 ml view</option>
+            <option value="zoom100">100 ml view</option>
+            <option value="true1000">1 L true scale</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Units</span>
+          <select id="setting-units">
+            <option value="liters">Metric (ml / L)</option>
+            <option value="gallons">US (fl oz / gal)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Humor Level</span>
+          <select id="setting-humor">
+            <option value="serious">Serious</option>
+            <option value="funny">Funny</option>
+            <option value="silly">Extra silly</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Theme</span>
+          <select id="setting-theme">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+
+        <label class="check-row">
+          <input type="checkbox" id="setting-badges" checked />
+          <span>Show per-message water pill under AI replies</span>
+        </label>
+
+        <label class="check-row">
+          <input type="checkbox" id="setting-sound" />
+          <span>Soft splash sound on milestones (Off by default)</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Secondary Expandable Area: All-Time & Advanced Breakdown -->
+    <details class="secondary-stats">
+      <summary>All-time statistics &amp; breakdown</summary>
+      <div class="tech-stats-body">
+        <div class="tech-row">
+          <span>Active conversation:</span>
+          <strong id="tech-chat">0 ml (0 bottles)</strong>
+        </div>
+        <div class="tech-row">
+          <span>Today breakdown:</span>
+          <strong id="tech-split">0 ml cooling + 0 ml power plant</strong>
+        </div>
+        <div class="tech-row">
+          <span>All-time total:</span>
+          <strong id="tech-alltime">0 ml (0 bottles · 0 replies)</strong>
+        </div>
+        <div class="tech-row">
+          <span>Hardware assumption (chat):</span>
+          <strong id="tech-hw">0 GPU-s · 0 MB KV · 0 Wh heat</strong>
+        </div>
+      </div>
+    </details>
+
+    <!-- Footer Reset with Confirmation -->
+    <footer class="popup-footer">
+      <button id="popup-reset-btn" class="reset-link" type="button">Reset counters</button>
+      <div id="reset-confirm-row" class="reset-confirm" hidden>
+        <span>Reset saved water totals?</span>
+        <button id="reset-confirm-yes" class="danger-btn" type="button">Reset</button>
+        <button id="reset-confirm-no" class="ghost-btn" type="button">Cancel</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="estimator.js"></script>
+  <script src="comparisons.js"></script>
+  <script src="bottle.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
