@@ -2,7 +2,7 @@
 
 # 💧 AI Water Meter
 
-**A calm, friendly 1-liter companion that estimates how much water keeps AI servers cool on ChatGPT & Google Gemini.**
+**"Hussain Mostafa" ,a calm, friendly 1-liter companion that estimates how much water keeps AI servers cool on ChatGPT & Google Gemini.**
 
 [![Release](https://img.shields.io/badge/release-v3.1.0-5DB7E8?style=for-the-badge)](https://github.com/ziadkarem00/ai-water-meter/releases)
 [![Manifest V3](https://img.shields.io/badge/Chrome_%26_Edge-Manifest_V3-236B94?style=for-the-badge)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
